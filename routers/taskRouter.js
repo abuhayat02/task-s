@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.post('/add-task' , addTask);
-router.post('/update-task' , updateTasks);
+router.put('/update-task' , updateTasks);
 router.delete('/delete-task/:id' , deleteTask);
 router.get('/all/:email' , taskGet)
 

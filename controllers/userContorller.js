@@ -3,8 +3,9 @@ const User = require("../Models/userModel");
 
 
 const ourUserContoler = async (req, res) => {
+    console.log(req.body)
     try {
-        let { name, email, password } = req.body;
+        let { name, email, image } = req.body;
 
 
         let myUser = await User.findOne({ email })
@@ -14,9 +15,9 @@ const ourUserContoler = async (req, res) => {
             let newUser = new User({
                 name,
                 email,
-                password
+                image
             })
-            let token = jwt.sign({ email }, process.env.SECRETE, { expiresIn: '6d' })
+            // let token = jwt.sign({ email }, process.env.SECRETE, { expiresIn: '6d' })
 
 
 
@@ -26,7 +27,7 @@ const ourUserContoler = async (req, res) => {
                 success: true,
                 name,
                 email,
-                token
+                // token
             })
 
         } else {
