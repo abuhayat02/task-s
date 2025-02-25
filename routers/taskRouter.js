@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.post('/add-task' , addTask);
-router.get('/all' , taskGet)
+router.get('/all/:email' , taskGet)
 
 module.exports = router
 

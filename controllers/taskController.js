@@ -34,7 +34,6 @@ let addTask = async (req, res) => {
 
 
 let taskGet = async (req, res) => {
-    console.log('hello')
     try {
         let UserEmail = req.params.email;
         let info = await Task.find({
@@ -55,6 +54,19 @@ let taskGet = async (req, res) => {
 
 
 
+}
+
+let updateTasks = async (req, res) => {
+    try {
+        let { user, title, email, description, category } = req.body;
+        
+
+    } catch (error) {
+        res.status(401).send({
+            success: false,
+            message: error.message
+        })
+    }
 }
 
 
