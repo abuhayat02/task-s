@@ -58,8 +58,29 @@ let taskGet = async (req, res) => {
 
 let updateTasks = async (req, res) => {
     try {
-        let { user, title, email, description, category } = req.body;
-        
+        let { user, title, description, category, id } = req.body;
+       
+        let updateData = await Task.findByIdAndUpdate(id,
+            {
+                user, title, description, category
+            },
+            {
+                new: true
+            }
+        )
+
+        if (!updateData) {
+            res.status(401).send({
+                success: false,
+            })
+        }
+
+
+        res.status(401).send({
+            success: true,
+            message: "updated task",
+            task: updateData
+        })
 
     } catch (error) {
         res.status(401).send({
@@ -70,5 +91,5 @@ let updateTasks = async (req, res) => {
 }
 
 
-module.exports = { taskGet, addTask };
+module.exports = { taskGet, addTask , updateTasks };
 
