@@ -12,6 +12,11 @@ app.use(express.json());
 
 connectionWithMongoose();
 
+app.use('/' , (req , res)=>{
+  res.status(200).send({
+    connection : true
+  })
+})
 app.use('/task/our-user', userRoute);
 app.use('/task', taskRoute);
 
