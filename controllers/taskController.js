@@ -59,7 +59,7 @@ let taskGet = async (req, res) => {
 let updateTasks = async (req, res) => {
     try {
         let { user, title, description, category, id } = req.body;
-       
+
         let updateData = await Task.findByIdAndUpdate(id,
             {
                 user, title, description, category
@@ -90,6 +90,33 @@ let updateTasks = async (req, res) => {
     }
 }
 
+let deleteTask = async (req, res) => {
+    let { id } = req.params;
 
-module.exports = { taskGet, addTask , updateTasks };
+    try {
+   
+        let deleteItem = await Task.findByIdAndDelete(id);
+
+        if (!deleteItem) {
+            return res.status(404).send({
+                success: false,
+                message: "Task not found"
+            });
+        }
+
+        return res.status(200).send({
+            success: true,
+            message: "Task deleted successfully",
+            deletedTask: deleteItem
+        });
+
+    } catch (error) {
+        return res.status(500).send({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+module.exports = { taskGet, addTask, updateTasks , deleteTask };
 
