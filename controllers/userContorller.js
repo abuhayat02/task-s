@@ -31,12 +31,12 @@ const ourUserContoler = async (req, res) => {
             })
 
         } else {
-            let token = jwt.sign({ email }, process.env.SECRETE, { expiresIn: '6d' })
+            // let token = jwt.sign({ email }, process.env.SECRETE, { expiresIn: '6d' })
             res.status(201).send({
                 success: true,
                 name,
                 email,
-                token
+                // token
             })
         }
 
